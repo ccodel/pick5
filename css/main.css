@@ -1,0 +1,141 @@
+html {
+    background-color: #ffffff;
+    background-image: url(../img/bikini1.jpg);
+    background-size: cover;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    background-color: #ffffff;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.06);
+    color: #545454;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0 auto;
+    margin-top: 100px;
+    max-width: 750px;
+    padding: 2em 2em 4em;
+    height: 100%;
+    opacity: 0.9;
+}
+
+.container {
+    width: 100%;
+    max-width: 750px;
+}
+
+.message {
+    border: 25px solid #00bf00;
+}
+
+.error {
+    border: 25px solid red;
+}
+
+div {
+    font-size: 25;
+    text-align: center;
+}
+
+form {
+    text-align: center;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    text-align: center;
+}
+
+#icon {
+    width: 20px;
+}
+
+.icon {
+    max-width: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#home-link {
+    text-decoration: none;
+    color: #545454;
+}
+
+.input-area {
+    padding-top: 10px;
+}
+
+#submit-picks-page {
+    background-image: url(../img/fieldgoal1.jpg);
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    text-align: center;
+}
+
+th {
+    font-size: 24px;
+    height: 50px;
+}
+
+td {
+    height: 50px;
+    font-size: 16px;
+    background-color: #fff;
+}
+
+#home-th, #away-th {
+    width: 20%;
+}
+
+#spread-th {
+    width: 10%;
+}
+
+#home, #away {
+    width: 20%;
+}
+
+#spread {
+    width: 10%;
+}
+
+#home, #away, #spread {
+    height: 100px;
+    transition: all 0.25s ease;
+    background-color: #fff;
+}
+
+#home:hover, #away:hover {
+    background-color: #a0c1f7;
+    transition: all 0.25s ease;
+}
+
+.team-logo-left {
+    width: 25%;
+    left: 15%;
+}
+
+.team-logo-right {
+    width: 25%;
+    left: 65%;
+}
+
+.big-logo {
+    width: 25%;
+}
+
+.left-team-box, .right-team-box {
+    width: 40%;
+    max-width: 40%;
+}
+
+.left-column, .right-column {
+    width: 50%;
+}

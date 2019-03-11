@@ -1,0 +1,69 @@
+--USER INFORMATION--
+Table: loginInformation
+    Name (name : string)
+    Email (email : string) NOT NULL PRIMARY KEY
+    Password (hashed) (pwd : string)
+    Account type (accountType : bit (0 is regular, 1 is admin)) NOT NULL
+    
+--WEEKLY SESSION DATA--
+Table: sessions
+    Session number (sessionNum : integer) NOT NULL
+    Year (year : integer) NOT NULL
+    Title (sessionTitle : string) NOT NULL
+    Dollars per point (dollarsPerPoint : integer) NOT NULL
+    Number of games (gamesToPlay : integer) NOT NULL
+    Number of picks (gamesToPick : integer) NOT NULL
+    Master kickoff (masterKickoff : datetime) NOT NULL
+    Perfect bonus (perfectBonus : bit) NOT NULL
+    Steak dinner (steakDinner : bit) NOT NULL
+
+--GAME DATA--
+Table: games
+    Session number (sessionNum : integer) NOT NULL
+    Year (year : integer) NOT NULL
+	Home team (home : string) NOT NULL
+	Away team (away: string) NOT NULL
+	Spread (spread : real) NOT NULL
+    Kickoff (kickoff : datetime) NOT NULL
+    Winner (winner : bit) 0 is away wins, 1 is home wins
+    Default loss (defaultLoss : bit) 0 is away, 1 is home
+    Default underdog (defaultUnderdog : bit) 0 is away, 1 is home
+    
+--SUBMISSION DATA--
+Table: picks
+    User (email : string) NOT NULL
+    Session number (sessionNum : integer) NOT NULL
+    Year (year : integer) NOT NULL
+    Pick 1 home (pick1home : string) NOT NULL
+    Pick 1 away (pick1away : string) NOT NULL
+    Pick 1 pick (pick1pick : bit) NOT NULL
+    Pick 2 home (pick2home : string)
+    Pick 2 away (pick2away : string)
+    Pick 2 pick (pick2pick : bit)
+    Pick 3 home (pick3home : string)
+    Pick 3 away (pick3away : string)
+    Pick 3 pick (pick3pick : bit)
+    Pick 4 home (pick4home : string)
+    Pick 4 away (pick4away : string)
+    Pick 4 pick (pick4pick : bit)
+    Pick 5 home (pick5home : string)
+    Pick 5 away (pick5away : string)
+    Pick 5 pick (pick5pick : bit)
+   
+--YTD USER DATA--
+Table: history
+    User (email : string) NOT NULL
+    Session number (sessionNum : integer) NOT NULL
+    Year (year : integer) NOT NULL
+    Wins (wins : integer) NOT NULL
+    Losses (losses : integer) NOT NULL
+    Points (points : integer) NOT NULL
+    Bonus points (bonusPoints : integer) NOT NULL
+    Winnings (winnings : integer) NOT NULL
+    YTD wins (ytdWins : integer) NOT NULL
+    YTD losses (ytdLosses : integer) NOT NULL
+    YTD points (ytdPoints : integer) NOT NULL
+    YTD bonus points (ytdBonusPoints : integer) NOT NULL
+    YTD winnings (ytdWinnings : integer) NOT NULL
+    Bonuses (bonuses : integer) NOT NULL
+    Steak dinner shares (shares : integer) NOT NULL
