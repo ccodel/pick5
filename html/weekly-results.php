@@ -103,51 +103,10 @@ if (!isset($_SESSION["info"])) {
                         <td>Total: <?php echo $_SESSION["info"]["total-session-p-l"]; ?> </td>
                     </tr>
                 </table>
-
-                <hr>
-
-                <h3>YTD Results</h3>
-                <table id="ytd-table">
-                    <tr>
-                        <td>Name</td>
-                        <td>Wins</td>
-                        <td>Losses</td>
-                        <td>Win %</td>
-                        <td>Points</td>
-                        <td>Bonus points</td>
-                        <td>Total points</td>
-                        <td>P&amp;L units</td>
-                        <td>Steak dinner shares</td>
-                    </tr>
-                    <?php for ($i = 0; $i < $_SESSION["info"]["userNum"]; $i++) { ?>
-                    <tr <?php echo "id='ytd-row-" . $i . "'"; ?>>
-                        <td <?php echo "id='ytd-name-" . $i . "'"; ?>> <?php echo $_SESSION["info"]["users"][$i]["name"]; ?> </td>
-                        <td> <?php echo $_SESSION["info"]["users"][$i]["ytd-wins"]; ?> </td>
-                        <td> <?php echo $_SESSION["info"]["users"][$i]["ytd-losses"]; ?> </td>
-                        <td> <?php if ($_SESSION["info"]["users"][$i]["ytd-wins"] + $_SESSION["info"]["users"][$i]["ytd-losses"] === 0) echo "--"; else echo substr(($_SESSION["info"]["users"][$i]["ytd-wins"] / ($_SESSION["info"]["users"][$i]["ytd-wins"] + $_SESSION["info"]["users"][$i]["ytd-losses"])) * 100, 0, 4) . "%"; ?> </td>
-                        <td> <?php echo $_SESSION["info"]["users"][$i]["ytd-points"]; ?> </td>
-                        <td> <?php echo $_SESSION["info"]["users"][$i]["ytd-bonus-points"]; ?> </td>
-                        <td> <?php echo $_SESSION["info"]["users"][$i]["ytd-total-points"]; ?> </td>
-                        <td <?php echo "id='ytd-pl-" . $i . "'"; ?>> <?php echo $_SESSION["info"]["users"][$i]["ytd-p-l"]; ?> </td>
-                        <td> <?php echo $_SESSION["info"]["users"][$i]["steak-dinner-shares"]; ?> </td>
-                    </tr>
-                    <?php } ?>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td>Total: <?php echo $_SESSION["info"]["total-ytd-p-l"]; ?> </td>
-                        <td>Total: <?php echo $_SESSION["info"]["total-steak-dinner-shares"]; ?> </td>
-                    </tr>
-                </table>
             </div>
             <?php } ?>
 
-            <?php echo "<script src='../js/results.js?" . rand() . "'></script>"; ?>
+            <?php echo "<script src='../js/weekly-results.js?" . rand() . "'></script>"; ?>
             
             <?php if (isset($_SESSION["info"])) $_SESSION["info"] = null; ?>
         </section>
