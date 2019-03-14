@@ -26,7 +26,7 @@ else
 //---------FIND SESSION LOGIC--------//
 //Identify the most recent session submitted
 $session = null;
-$sessionNum = 22;
+$sessionNum = getMaxNumOfSessions();
 
 while ($session == null && $sessionNum > 0) {
     $result = $db->query("SELECT * FROM sessions WHERE sessionNum = " . $sessionNum . " AND year = " . $year);

@@ -1,9 +1,8 @@
 <?php
 
 //--------INITIALIZATION--------//
-if (session_status() == PHP_SESSION_NONE) {
+if (session_status() == PHP_SESSION_NONE)
     session_start();
-}
 
 include("database-init.php");
 include("team-names.php");
@@ -68,10 +67,15 @@ function getYear() {
     $currentDate = date("y-m-d");
     $year = date('Y', strtotime($currentDate));
     $month = date('n', strtotime($currentDate));
-    if ($month <= 3){
+    if ($month <= 3)
         $year -= 1;
-    }
+    
     return $year;
+}
+
+function getMaxNumOfSessions() {
+    // Manually return the number of sessions in one season
+    return 23;
 }
 
 function cmpTimeToNow($passedDate, $passedTime) {
@@ -138,15 +142,18 @@ function getNumOfRows($result) {
 function doesEntryExist($database, $table, $field, $value) {
     $result = $database->query("SELECT * FROM " . $table . " WHERE " . $field . " = " . "'" . $value . "'");
 
-    if (!$result) {
+    if (!$result)
         return false;
-    }
 
-    if (getNumOfRows($result) > 0) {
+    if (getNumOfRows($result) > 0)
         return true;
-    }
 
     return false;
+}
+
+function getMostRecentSession() {
+    // TODO fill in with most recent session logic
+    // Figure out if PHP returns tuples
 }
 
 ?>

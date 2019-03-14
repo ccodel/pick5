@@ -1,29 +1,7 @@
 <?php
 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
-if (empty($_SESSION["logged-in"]) || $_SESSION["logged-in"] == "false") {
-    header("Location: ../login.php");
-    exit();
-} else if (isset($_SESSION["last-activity"]) && time() - $_SESSION["last-activity"] < 3600) {
-    $_SESSION["last-activity"] = time();
-} else {
-    $_SESSION["error"] = "Your session has expired.";
-    $_SESSION["email"] = null;
-    $_SESSION["admin"] = null;
-    $_SESSION["logged-in"] = null;
-    $_SESSION["last-activity"] = null;
-    $_SESSION["info"] = null;
-    header("Location: ../login.php");
-}
-
-if (!isset($_SESSION['admin'])) {
-    $_SESSION['error'] = "You are not admin.";
-    header("Location: ../../index.php");
-    exit();
-}
+include("../../php/api/check-login.php");
+checkAdmin();
 
 ?>
 
@@ -81,31 +59,8 @@ if (!isset($_SESSION['admin'])) {
 
             <form id="get-session-status" action="../../php/get/get-admin-player-status.php" method="post">
                 <h4>Select which session you'd like to view the status of.</h4>
-                <select id="session-dropdown" name="session-dropdown">
-                    <option value="blank" <?php if (!isset($_SESSION["info"]["session"])) echo "selected='selected'" ?> >------</option>
-                    <option value="session1" <?php if ($_SESSION["info"]["session"] == "session1") echo "selected='selected'" ?>>Session 1</option>
-                    <option value="session2" <?php if ($_SESSION["info"]["session"] == "session2") echo "selected='selected'" ?>>Session 2</option>
-                    <option value="session3" <?php if ($_SESSION["info"]["session"] == "session3") echo "selected='selected'" ?>>Session 3</option>
-                    <option value="session4" <?php if ($_SESSION["info"]["session"] == "session4") echo "selected='selected'" ?>>Session 4</option>
-                    <option value="session5" <?php if ($_SESSION["info"]["session"] == "session5") echo "selected='selected'" ?>>Session 5</option>
-                    <option value="session6" <?php if ($_SESSION["info"]["session"] == "session6") echo "selected='selected'" ?>>Session 6</option>
-                    <option value="session7" <?php if ($_SESSION["info"]["session"] == "session7") echo "selected='selected'" ?>>Session 7</option>
-                    <option value="session8" <?php if ($_SESSION["info"]["session"] == "session8") echo "selected='selected'" ?>>Session 8</option>
-                    <option value="session9" <?php if ($_SESSION["info"]["session"] == "session9") echo "selected='selected'" ?>>Session 9</option>
-                    <option value="session10" <?php if ($_SESSION["info"]["session"] == "session10") echo "selected='selected'" ?>>Session 10</option>
-                    <option value="session11" <?php if ($_SESSION["info"]["session"] == "session11") echo "selected='selected'" ?>>Session 11</option>
-                    <option value="session12" <?php if ($_SESSION["info"]["session"] == "session12") echo "selected='selected'" ?>>Session 12</option>
-                    <option value="session13" <?php if ($_SESSION["info"]["session"] == "session13") echo "selected='selected'" ?>>Session 13</option>
-                    <option value="session14" <?php if ($_SESSION["info"]["session"] == "session14") echo "selected='selected'" ?>>Session 14</option>
-                    <option value="session15" <?php if ($_SESSION["info"]["session"] == "session15") echo "selected='selected'" ?>>Session 15</option>
-                    <option value="session16" <?php if ($_SESSION["info"]["session"] == "session16") echo "selected='selected'" ?>>Session 16</option>
-                    <option value="session17" <?php if ($_SESSION["info"]["session"] == "session17") echo "selected='selected'" ?>>Week 16</option>
-                    <option value="session18" <?php if ($_SESSION["info"]["session"] == "session18") echo "selected='selected'" ?>>Week 17</option>
-                    <option value="session19" <?php if ($_SESSION["info"]["session"] == "session19") echo "selected='selected'" ?>>Wild Card Playoffs</option>
-                    <option value="session20" <?php if ($_SESSION["info"]["session"] == "session20") echo "selected='selected'" ?>>Divisional Playoffs</option>
-                    <option value="session21" <?php if ($_SESSION["info"]["session"] == "session21") echo "selected='selected'" ?>>Conference Championship</option>
-                    <option value="session22" <?php if ($_SESSION["info"]["session"] == "session22") echo "selected='selected'" ?>>Superbowl</option>
-                </select>
+                <!-- Includes a dropdown menue with the weely sessions, named session-dropdown -->
+                <?php include("../../php/api/echo-dropdown.php"); ?>
                 <input type="submit" name="session-submit" id="session-submit" value="Load data">
             </form>
             

@@ -46,7 +46,7 @@ var masterKickoffYear = document.getElementById("master-kickoff-year");
 var masterKickoffHour = document.getElementById("master-kickoff-hour");
 var masterKickoffMinute = document.getElementById("master-kickoff-minute");
 
-var findGamesButton = document.getElementById("find-games");
+//var findGamesButton = document.getElementById("find-games");
 var inputGamesButton = document.getElementById("enter-games");
 
 var gameNumInput = document.getElementById("games-to-play");
@@ -366,7 +366,7 @@ function generateTable(scrapeBool) {
     }
 }
 
-findGamesButton.addEventListener("click", generateTable(false));
+//findGamesButton.addEventListener("click", generateTable(false));
 inputGamesButton.addEventListener("click", generateTable(false));
 
 if (hidden.value != null && gameNumInput.value > 0) {

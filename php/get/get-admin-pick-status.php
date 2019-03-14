@@ -17,8 +17,8 @@ else
 
 //---------FIND SESSION LOGIC--------//
 //Identify the most recent session submitted
-$_SESSION["info"]["session"] = $_POST["session"];
-$session = $_POST["session"];
+$_SESSION["info"]["session"] = $_POST["session-dropdown"];
+$session = $_POST["session-dropdown"];
 
 if ($session == "blank")
     postErrorMessage("Please select one of the sessions.", $page);

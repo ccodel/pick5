@@ -1,24 +1,6 @@
 <?php
 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-
-if (!isset($_SESSION["logged-in"])) {
-    $_SESSION["error"] = "You haven't logged in yet.";
-    header("Location: ../index.php");
-    exit();
-} else if (isset($_SESSION["last-activity"]) && time() - $_SESSION["last-activity"] < 3600) {
-    $_SESSION["last-activity"] = time();
-} else {
-    $_SESSION["error"] = "Your session has expired.";
-    $_SESSION["email"] = null;
-    $_SESSION["admin"] = null;
-    $_SESSION["logged-in"] = null;
-    $_SESSION["last-activity"] = null;
-    $_SESSION["info"] = null;
-    header("Location: login.php");
-}
+include("../php/api/check-login.php");
 
 ?>
 

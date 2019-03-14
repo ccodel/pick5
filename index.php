@@ -1,27 +1,8 @@
 <?php
 
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+include("php/api/check-login.php");
 
-if (!isset($_SESSION["logged-in"])) {
-    $_SESSION["error"] = "You are not logged in.";
-    header("Location: html/login.php");
-    exit();
-} else if (isset($_SESSION["last-activity"]) && time() - $_SESSION["last-activity"] < 3600) {
-    $_SESSION["last-activity"] = time();
-} else {
-    $_SESSION["error"] = "Your session has expired.";
-    $_SESSION["email"] = null;
-    $_SESSION["admin"] = null;
-    $_SESSION["logged-in"] = null;
-    $_SESSION["last-activity"] = null;
-    $_SESSION["info"] = null;
-    header("Location: html/login.php");
-    exit();
-}
-
-//Since no info is required to load page, we clear it here
+//Since no additional info is required to load page, we clear it here
 if (isset($_SESSION["info"]))
     $_SESSION["info"] = null;
 
@@ -101,8 +82,11 @@ if (isset($_SESSION["info"]))
 
             <div>
                 <h4>Want to see the results?</h4>
-                <button type="button" onclick="window.location.replace('html/results.php');">
-                    See the results
+                <button type="button" onclick="window.location.replace('html/weekly-results.php');">
+                    Weekly results
+                </button>
+                <button type="button" onclick="window.location.replace('html/yearly-results.php');">
+                    Yearly results
                 </button>
             </div>
         </section>

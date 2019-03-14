@@ -1,11 +1,10 @@
 <?php
 
-if (session_status() == PHP_SESSION_NONE) {
+if (session_status() == PHP_SESSION_NONE)
     session_start();
-}
 
 if (isset($_SESSION["logged-in"]) && $_SESSION["logged-in"] == "true") {
-    $_SESSION['msg'] = "You are now logged in.";
+    $_SESSION["msg"] = "You are now logged in.";
     header("Location: ../index.php");
     exit();
 }
