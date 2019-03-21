@@ -1,6 +1,7 @@
 <?php
 
 include("php/api/check-login.php");
+checkLogin();
 
 //Since no additional info is required to load page, we clear it here
 if (isset($_SESSION["info"]))

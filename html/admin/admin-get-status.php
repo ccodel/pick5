@@ -1,6 +1,7 @@
 <?php
 
 include("../../php/api/check-login.php");
+checkLogin();
 checkAdmin();
 
 ?>

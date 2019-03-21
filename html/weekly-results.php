@@ -1,9 +1,10 @@
 <?php
 
-include("../php/check-login.php");
+include("../php/api/check-login.php");
+checkLogin();
 
 if (!isset($_SESSION["info"])) {
-    header("Location: ../php/get/get-results.php");
+    header("Location: ../php/get/get-weekly-results.php");
     exit();
 }
 
@@ -62,16 +63,15 @@ if (!isset($_SESSION["info"])) {
             <?php if (isset($_SESSION["info"])) { ?>
             <div>
                 <h3>Current session results</h3>
-                
+
                 <button type="button" id="alphabetize-button">Sort by name</button>
                 <button type="button" id="pl-button">Sort by P&amp;L units</button>
-                <button type="button" id="ytd-pl-button">Sort by YTD P&amp;L units</button>
-                
+
                 <p hidden id="user-num"><?php echo $_SESSION["info"]["userNum"]; ?></p>
-                
+
                 <br>
                 <br>
-                
+
                 <table id="session-table">
                     <tr>
                         <td>Name</td>
@@ -107,7 +107,7 @@ if (!isset($_SESSION["info"])) {
             <?php } ?>
 
             <?php echo "<script src='../js/weekly-results.js?" . rand() . "'></script>"; ?>
-            
+
             <?php if (isset($_SESSION["info"])) $_SESSION["info"] = null; ?>
         </section>
     </body>

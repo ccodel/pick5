@@ -1,9 +1,10 @@
 <?php
 
-include("../php/check-login.php");
+include("../php/api/check-login.php");
+checkLogin();
 
 if (!isset($_SESSION["info"])) {
-    header("Location: ../php/get/get-results.php");
+    header("Location: ../php/get/get-yearly-results.php");
     exit();
 }
 

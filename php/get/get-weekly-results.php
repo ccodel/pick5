@@ -4,7 +4,7 @@ include("../api/sql-api.php");
 
 //-------IMPORTANT VARS--------//
 $db_dir = "../../sql/pickfivefootball.db";
-$page = "../../html/results.php";
+$page = "../../html/weekly-results.php";
 $year = getYear();
 
 //--------SQL LOGIC--------//
@@ -77,22 +77,11 @@ else if (getNumOfRows($result) === 0 && $sessionNum > 1) {
         $_SESSION["info"]["users"][$i]["session-bonus-points"] = $history["bonusPoints"];
         $_SESSION["info"]["users"][$i]["session-total-points"] = $history["points"] + $history["bonusPoints"];
         $_SESSION["info"]["users"][$i]["session-p-l"] = $history["winnings"];
-        $_SESSION["info"]["users"][$i]["ytd-wins"] = $history["ytdWins"];
-        $_SESSION["info"]["users"][$i]["ytd-losses"] = $history["ytdLosses"];
-        $_SESSION["info"]["users"][$i]["ytd-points"] = $history["ytdPoints"];
-        $_SESSION["info"]["users"][$i]["ytd-bonus-points"] = $history["ytdBonusPoints"];
-        $_SESSION["info"]["users"][$i]["ytd-total-points"] = $history["ytdPoints"] + $history["ytdBonusPoints"];
-        $_SESSION["info"]["users"][$i]["ytd-p-l"] = $history["ytdWinnings"];
-        $_SESSION["info"]["users"][$i]["steak-dinner-shares"] = $history["shares"];
 
         $totalSessionPL += $history["winnings"];
-        $totalYTDPL += $history["ytdWinnings"];
-        $totalShares += $history["shares"];
     }
 
     $_SESSION["info"]["total-session-p-l"] = $totalSessionPL;
-    $_SESSION["info"]["total-ytd-p-l"] = $totalYTDPL;
-    $_SESSION["info"]["total-steak-dinner-shares"] = $totalShares;
 } else {
     //Get all the player data
     $numOfPlayers = getNumOfRows($result);
@@ -112,22 +101,11 @@ else if (getNumOfRows($result) === 0 && $sessionNum > 1) {
         $_SESSION["info"]["users"][$i]["session-bonus-points"] = $history["bonusPoints"];
         $_SESSION["info"]["users"][$i]["session-total-points"] = $history["points"] + $history["bonusPoints"];
         $_SESSION["info"]["users"][$i]["session-p-l"] = $history["winnings"];
-        $_SESSION["info"]["users"][$i]["ytd-wins"] = $history["ytdWins"];
-        $_SESSION["info"]["users"][$i]["ytd-losses"] = $history["ytdLosses"];
-        $_SESSION["info"]["users"][$i]["ytd-points"] = $history["ytdPoints"];
-        $_SESSION["info"]["users"][$i]["ytd-bonus-points"] = $history["ytdBonusPoints"];
-        $_SESSION["info"]["users"][$i]["ytd-total-points"] = $history["ytdPoints"] + $history["ytdBonusPoints"];
-        $_SESSION["info"]["users"][$i]["ytd-p-l"] = $history["ytdWinnings"];
-        $_SESSION["info"]["users"][$i]["steak-dinner-shares"] = $history["shares"];
 
         $totalSessionPL += $history["winnings"];
-        $totalYTDPL += $history["ytdWinnings"];
-        $totalShares += $history["shares"];
     }
 
     $_SESSION["info"]["total-session-p-l"] = $totalSessionPL;
-    $_SESSION["info"]["total-ytd-p-l"] = $totalYTDPL;
-    $_SESSION["info"]["total-steak-dinner-shares"] = $totalShares;
 }
 
 postMessage("Session results loaded.", $page);

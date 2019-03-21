@@ -14,27 +14,14 @@ function sort(func, sessionBool) {
 }
 
 function nameCompare(firstNum, secondNum, sessionBool) {
-    var firstName = document.getElementById("name-" + firstNum);
-    var secondName = document.getElementById("name-" + secondNum);
-    var firstPL = document.getElementById("pl-" + firstNum);
-    var secondPL = document.getElementById("pl-" + secondNum);
     var firstYTDName = document.getElementById("ytd-name-" + firstNum);
     var secondYTDName = document.getElementById("ytd-name-" + secondNum);
     var firstYTDPL = document.getElementById("ytd-pl-" + firstNum);
     var secondYTDPL = document.getElementById("ytd-pl-" + secondNum);
 
-    var parent = firstName.parentElement.parentElement;
     var ytdParent = firstYTDName.parentElement.parentElement;
 
-    if (firstName.innerHTML.localeCompare(secondName.innerHTML) === 1) {
-        parent.insertBefore(secondName.parentElement, firstName.parentElement);
-        firstName.parentElement.setAttribute("id", "row-" + secondNum);
-        secondName.parentElement.setAttribute("id", "row-" + firstNum);
-        firstName.setAttribute("id", "name-" + secondNum);
-        secondName.setAttribute("id", "name-" + firstNum);
-        firstPL.setAttribute("id", "pl-" + secondNum);
-        secondPL.setAttribute("id", "pl-" + firstNum);
-
+    if (firstYTDName.innerHTML.localeCompare(secondYTDName.innerHTML) === 1) {
         ytdParent.insertBefore(secondYTDName.parentElement, firstYTDName.parentElement);
         firstYTDName.parentElement.setAttribute("id", "ytd-row-" + secondNum);
         secondYTDName.parentElement.setAttribute("id", "ytd-row-" + firstNum);
@@ -46,28 +33,15 @@ function nameCompare(firstNum, secondNum, sessionBool) {
 }
 
 function plCompare(firstNum, secondNum, sessionBool) {
-    var firstName = document.getElementById("name-" + firstNum);
-    var secondName = document.getElementById("name-" + secondNum);
-    var firstPL = document.getElementById("pl-" + firstNum);
-    var secondPL = document.getElementById("pl-" + secondNum);
     var firstYTDName = document.getElementById("ytd-name-" + firstNum);
     var secondYTDName = document.getElementById("ytd-name-" + secondNum);
     var firstYTDPL = document.getElementById("ytd-pl-" + firstNum);
     var secondYTDPL = document.getElementById("ytd-pl-" + secondNum);
 
-    var parent = firstName.parentElement.parentElement;
     var ytdParent = firstYTDName.parentElement.parentElement;
 
-    if ((sessionBool && parseInt(firstPL.innerHTML) < parseInt(secondPL.innerHTML)) 
+    if ((sessionBool && parseInt(firstYTDPL.innerHTML) < parseInt(secondYTDPL.innerHTML)) 
         || (!sessionBool && parseInt(firstYTDPL.innerHTML) < parseInt(secondYTDPL.innerHTML))) {
-        parent.insertBefore(secondName.parentElement, firstName.parentElement);
-        firstName.parentElement.setAttribute("id", "row-" + secondNum);
-        secondName.parentElement.setAttribute("id", "row-" + firstNum);
-        firstName.setAttribute("id", "name-" + secondNum);
-        secondName.setAttribute("id", "name-" + firstNum);
-        firstPL.setAttribute("id", "pl-" + secondNum);
-        secondPL.setAttribute("id", "pl-" + firstNum);
-
         ytdParent.insertBefore(secondYTDName.parentElement, firstYTDName.parentElement);
         firstYTDName.parentElement.setAttribute("id", "ytd-row-" + secondNum);
         secondYTDName.parentElement.setAttribute("id", "ytd-row-" + firstNum);
@@ -81,4 +55,4 @@ function plCompare(firstNum, secondNum, sessionBool) {
 alphaButton.addEventListener("click", sort(nameCompare, true));
 ytdPLButton.addEventListener("click", sort(plCompare, false));
 
-sort(plCompare, false);
+sort(plCompare, false) ();

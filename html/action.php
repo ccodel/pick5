@@ -1,6 +1,7 @@
 <?php
 
 include("../php/api/check-login.php");
+checkLogin();
 
 if (!isset($_SESSION["info"])) {
     header("Location: ../php/get/get-action.php");
