@@ -44,6 +44,6 @@ else if ($firstRow['pwd'] != md5($password))
 $admin = $firstRow["accountType"];
 
 $db->close();
-login("Successfully logged in.", $email, $admin, "../../index.php");
+login("Successfully logged in.", $email, $admin, "../index.php");
 
 ?>

@@ -14,10 +14,10 @@ function login($msg, $email, $admin, $goto) {
     else
         $_SESSION["admin"] = "false";
     $_SESSION["email"] = $email;
-    $_SESSION["msg"] = $msg;
     $_SESSION["logged-in"] = "true";
     $_SESSION["last-activity"] = time();
-    header("Location: " . $goto);
+    
+    toSplash("../../html/splash.php", $goto, "../img/field.jpg", $msg, NULL);
     exit();
 }
 
@@ -55,6 +55,16 @@ function postMessageAndErrorMessage($msg, $error, $goto) {
     $_SESSION["msg"] = $msg;
     $_SESSION["error"] = $error;
     header("Location: " . $goto);
+    exit();
+}
+
+function toSplash($splash, $destination, $picture, $msg, $error) {
+    $_SESSION["msg"] = $msg;
+    $_SESSION["error"] = $error;
+    $_SESSION["info"] = array(2);
+    $_SESSION["info"]["destination"] = $destination;
+    $_SESSION["info"]["picture"] = $picture;
+    header("Location: " . $splash);
     exit();
 }
 
