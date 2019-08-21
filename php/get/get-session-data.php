@@ -25,6 +25,8 @@ if ($db)
 else
     postErrorMessage("Connection with the database was not successful. Try again later.", $page);
 
+var_dump($_POST);
+console_log("The session number is " . $sessionNum . " and the year is " . $year);
 
 //Check if data has been saved yet
 $result = $db->query("SELECT * FROM sessions WHERE sessionNum = " . $sessionNum . " AND year = " . $year);
@@ -34,6 +36,8 @@ if (!$result)
 
 if (getNumOfRows($result) == 0)
     postMessage("No saved session found (no worries!). Generated blank template.", $page);
+
+console_log("Number of rows is " . getNumOfRows($result));
 
 //Load data - it's a bit confusing, but it's stored in $session, not $_SESSION
 $session = $result->fetchArray(SQLITE3_ASSOC);

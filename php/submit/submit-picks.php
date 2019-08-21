@@ -139,10 +139,10 @@ if (!$result || getNumOfRows($result) == 0) {
 
     $result = $db->query($query);
 
-    if (!$result || $result == null)
+    if (!$result || $result == null) {
         postErrorMessage("Insert of new picks did not succeed. Try again.", $page);
-    else {
-        postMessage(nl2br("Picks saved. " . parrotPicks($picks, $picksAway, $picksHome, $spreadChosen)), $page);
+    } else {
+        toSplash("../../html/splash.php", "../../index.php", NULL, nl2br("Picks saved. " . parrotPicks($picks, $picksAway, $picksHome, $spreadChosen)), NULL);
     }
 } else {
     for ($i = 0; $i < $gamesToPick; $i++) {
@@ -158,7 +158,7 @@ if (!$result || getNumOfRows($result) == 0) {
             postErrorMessage("Update query on pick " . ($i + 1) . " was not successful. Try again.", $page);
     }
 
-    postMessage(nl2br("Picks saved. " . parrotPicks($picks, $picksAway, $picksHome, $spreadChosen)), $page);
+    toSplash("../../html/splash.php", "../../index.php", NULL, nl2br("Picks saved. " . parrotPicks($picks, $picksAway, $picksHome, $spreadChosen)), NULL);
 }
 
 ?>

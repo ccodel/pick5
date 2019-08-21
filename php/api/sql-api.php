@@ -13,11 +13,11 @@ function login($msg, $email, $admin, $goto) {
         $_SESSION["admin"] = "true";
     else
         $_SESSION["admin"] = "false";
+    $_SESSION["msg"] = $msg;
     $_SESSION["email"] = $email;
     $_SESSION["logged-in"] = "true";
     $_SESSION["last-activity"] = time();
-    
-    toSplash("../../html/splash.php", $goto, "../img/field.jpg", $msg, NULL);
+    header("Location: " . $goto);
     exit();
 }
 
@@ -63,7 +63,22 @@ function toSplash($splash, $destination, $picture, $msg, $error) {
     $_SESSION["error"] = $error;
     $_SESSION["info"] = array(2);
     $_SESSION["info"]["destination"] = $destination;
-    $_SESSION["info"]["picture"] = $picture;
+  
+    // Generate random number to choose picture
+    $randInt = rand(1, 100);
+    if ($randInt == 1)
+      $_SESSION["info"]["picture"] = "../img/mean.jpg";
+    else if ($randInt == 2)
+      $_SESSION["info"]["picture"] = "../img/middle-finger1.jpg";
+    else if ($randInt == 3)
+      $_SESSION["info"]["picture"] = "../img/rundall.jpg";
+    else if ($picture != NULL)
+      $_SESSION["info"]["picture"] = $picture;
+    else if ($randInt % 2 == 0)
+      $_SESSION["info"]["picture"] = "../img/cheerleaders.jpg";
+    else
+      $_SESSION["info"]["picture"] = "../img/bikini2.jpg";
+  
     header("Location: " . $splash);
     exit();
 }

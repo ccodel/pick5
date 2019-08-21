@@ -15,4 +15,4 @@ function changeWindow() {
     window.location.replace(destination);
 }
 
-window.setTimeout(changeWindow, 5000);
+window.setTimeout(changeWindow, 4000);
