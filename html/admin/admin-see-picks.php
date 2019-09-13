@@ -13,7 +13,7 @@ checkAdmin();
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Pick 5 Football Club</title>
         <link rel="stylesheet" href="../../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../../css/main.css">
+        <link rel="stylesheet" href="../../css/main.css?<?php echo date(); ?>">
         <link rel="icon" href="../../img/icon.png">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
@@ -60,7 +60,7 @@ checkAdmin();
 
             <form id="get-pick-status" action="../../php/get/get-admin-pick-status.php" method="post">
                 <h4>Select which session you'd like to view.</h4>
-                <select id="session" name="session">
+                <select id="session-dropdown" name="session-dropdown">
                     <option value="blank" <?php if (!isset($_SESSION["info"]["session"])) echo "selected=\'selected\'" ?> >------</option>
                     <option value="session1" <?php if ($_SESSION["info"]["session"] == "session1") echo "selected=\'selected\'" ?>>1 - Kickoff Game</option>
                     <option value="session2" <?php if ($_SESSION["info"]["session"] == "session2") echo "selected=\'selected\'" ?>>2 - Week 1</option>

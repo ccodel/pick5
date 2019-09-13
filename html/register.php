@@ -12,7 +12,7 @@ if (session_status() == PHP_SESSION_NONE)
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Pick 5 Football Club</title>
         <link rel="stylesheet" href="../css/bootstrap.min.css">
-        <link rel="stylesheet" href="../css/main.css">
+        <link rel="stylesheet" href="../css/main.css?<?php echo date(); ?>">
         <link rel="icon" href="../img/icon.png">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>

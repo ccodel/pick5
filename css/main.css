@@ -1,7 +1,8 @@
 html {
     background-color: #ffffff;
     background-image: url(../img/bikini3.jpg);
-    background-size: cover;
+    background-size: contain;
+    background-position: center;
     -webkit-font-smoothing: antialiased;
 }
 
