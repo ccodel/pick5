@@ -191,11 +191,12 @@ function getSessionScrollHTML($scrollId) {
 
   $row = $result->fetchArray(SQLITE3_ASSOC);
   $numberOfSessions = $row["sessions"];
+  $hasSessions = true;
 
   // Get active sessions
   $result = $db->query("SELECT sessionNum, title FROM sessions WHERE year = " . $year);
   if (!$result)
-    return "<h4>Error getting any created sessions</h4>";
+    $hasSessions = false;
 
   $sessions = $result->fetchArray(SQLITE3_ASSOC);
   $numActive = getNumOfRows($sessions);
@@ -208,9 +209,13 @@ function getSessionScrollHTML($scrollId) {
   // Loop through sessions and pick out those names already defined
   for ($i = 1; $i <= $numberOfSessions; $i++) {
     $weekStr = "Week " . $i;
-    for ($j = 0; $j < $numActive; $j++) {
-      if ($sessions[$j]["sessionNum"] == $i)
-        $weekStr = $sessions[$j]["title"];
+    if ($hasSessions) {
+      for ($j = 0; $j < $numActive; $j++) {
+        if ($sessions[$j]["sessionNum"] == $i) {
+          $weekStr = $sessions[$j]["title"];
+          break;
+        }
+      }
 
       $scrollStr = $scrollStr . "<option value='session" . $i . "'";
       if ($_SESSION["info"]["session"] == "session" . $i)
