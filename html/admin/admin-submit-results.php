@@ -60,13 +60,10 @@ checkAdmin();
             <hr>
 
             <form id="session-load-form" action="../../php/get/get-session-results-data.php" method="post">
-                <h4>Select which session you'd like to input results for.</h4>
-                <select id="session-dropdown" name="session-dropdown">
-                    <option value="blank" <?php if (!isset($_SESSION["info"]["session"])) echo "selected=\'selected\'"; ?> >------</option>
-                    <?php for ($i = 0; $i < $_SESSION["info"]["num-sessions"]; $i++) { ?>
-                      <?php echo "<option value='session" . ($i + 1) . "'>" . ($i + 1) . " - " . $_SESSION["info"]["sessions"] . "</option>"; ?>
-                    <?php } ?>
-                </select>
+		<h4>Select which session you'd like to input results for.</h4>
+
+		<?php include("../../php/api/sql-api.php"); ?>
+		<?php echo getSessionScrollHTML("session-dropdown"); ?>
                 <input type="submit" name="session-submit" id="session-submit" value="Load data">
             </form>
 

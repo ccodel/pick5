@@ -195,33 +195,35 @@ function getSessionScrollHTML($scrollId) {
 
   // Get active sessions
   $result = $db->query("SELECT sessionNum, title FROM sessions WHERE year = " . $year);
-  if (!$result)
+  if (!$result) {
     $hasSessions = false;
-
-  $sessions = $result->fetchArray(SQLITE3_ASSOC);
-  $numActive = getNumOfRows($sessions);
+    $numActive = 0;
+  }  else {
+    $numActive = getNumOfRows($result);
+  }
 
   $scrollStr = "<select id='" . $scrollId . "' name='" . $scrollId . "'><option value='blank'";
   if (!isset($_SESSION["info"]["session"]))
-    $scrollStr = $scrollStr . " selelected='selected'";
-  $scrollStr = $scrollStr . ">";
+    $scrollStr = $scrollStr . " selected='selected'";
+  $scrollStr = $scrollStr . ">---------------</option>";
 
   // Loop through sessions and pick out those names already defined
   for ($i = 1; $i <= $numberOfSessions; $i++) {
     $weekStr = "Week " . $i;
     if ($hasSessions) {
+      $session = $result->fetchArray(SQLITE3_ASSOC);
       for ($j = 0; $j < $numActive; $j++) {
-        if ($sessions[$j]["sessionNum"] == $i) {
-          $weekStr = $sessions[$j]["title"];
+        if ($session["sessionNum"] == $i) {
+          $weekStr = $session["title"];
           break;
         }
       }
-
-      $scrollStr = $scrollStr . "<option value='session" . $i . "'";
-      if ($_SESSION["info"]["session"] == "session" . $i)
-        $scrollStr = $scrollStr . " selected='selected'";
-      $scrollStr = $scrollStr . ">" . $weekStr . "</option>";
     }
+
+    $scrollStr = $scrollStr . "<option value='session" . $i . "'";
+    if ($_SESSION["info"]["session"] == "session" . $i)
+      $scrollStr = $scrollStr . " selected='selected'";
+    $scrollStr = $scrollStr . ">" . $weekStr . "</option>";
   }
 
   $scrollStr = $scrollStr . "</select>";

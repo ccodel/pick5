@@ -59,10 +59,9 @@ checkAdmin();
 
             <hr>
             <form id="session-load-form" action="../../php/get/get-session-data.php" method="post">
-                <h4>Select which session you'd like to edit.</h4>
+		<h4>Select which session you'd like to edit.</h4>
 
-                <?php include("../../php/api/sql-api.php"); ?>
-                <?php console.log(getSessionScrollHTML("session-dropdown")) ?>
+		<?php include("../../php/api/sql-api.php"); ?>
                 <?php echo getSessionScrollHTML("session-dropdown"); ?>
                 <input type="submit" name="session-submit" id="session-submit" value="Create/load data">
             </form>

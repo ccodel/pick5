@@ -60,9 +60,9 @@ checkAdmin();
 
             <form id="get-session-status" action="../../php/get/get-admin-player-status.php" method="post">
                 <h4>Select which session you'd like to view the status of.</h4>
-                
-                <?php include("../../php/api/sql-api.php"); ?>
-                <? echo getSessionScrollHTML("session-dropdown"); ?>
+
+		<?php include("../../php/api/sql-api.php"); ?>
+		<?php echo getSessionScrollHTML("session-dropdown"); ?>
                 <input type="submit" name="session-submit" id="session-submit" value="Load data">
             </form>
             
