@@ -83,8 +83,6 @@ if ($counter < $gamesToPick)
 else if ($counter > $gamesToPick)
     postErrorMessage("You have made more than " . $gamesToPick . " picks. Select fewer.", $page);
 
-
-
 //--------SQL LOGIC--------//
 $db = new SQLite3($db_dir);
 
@@ -92,6 +90,23 @@ if ($db)
     console_log("Connection established");
 else
     postErrorMessage("Connection with the database was not successful. Try again later.", $page);
+
+//Identify the most recent session submitted
+// Get the session from the database corresponding to the sessionNum
+$session = $db->query("SELECT * FROM sessions WHERE sessionNum = " . $sessionNum . " AND year = " . $year);
+if ($session == null || !$session || getNumOfRows($session) == 0)
+  postErrorMessage("The session for the week you've tried to submit doesn't exist. Contact admins.", $page);
+else
+  $session = $session->fetchArray(SQLITE3_ASSOC);
+
+//Check if the current time is before master kickoff time
+//If not, redirect back to home page
+$masterKickoff = $session["masterKickoff"];
+$index = strpos($masterKickoff, " ");
+$masterDate = substr($masterKickoff, 0, $index);
+$masterTime = substr($masterKickoff, $index + 1);
+if (cmpTimeToNow($masterDate, $masterTime) === -1)
+  postErrorMessage("The master kickoff time has passed. You may not edit your picks.", "../../index.php");
 
 //See if previous picks have been made for the email
 $result = $db->query("SELECT * FROM picks WHERE email = '" . $_SESSION["email"] . "' AND sessionNum = " . $sessionNum . " AND year = " . $year);

@@ -61,6 +61,13 @@ checkAdmin();
             <hr>
 
             <div>
+                <h3>Configure this year's season</h3>
+                <button type="button" onclick="window.location.replace('admin-configure-season.php');">Configure season</button>
+            </div>
+
+            <hr>
+
+            <div>
                 <h3>Create/edit the current session's games</h3>
                 <button type="button" onclick="window.location.replace('admin-create-session.php');">Set up session</button>
             </div>
