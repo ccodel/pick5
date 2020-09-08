@@ -100,7 +100,7 @@ function getYear() {
 
 function getMaxNumOfSessions() {
     // Manually return the number of sessions in one season
-    return 23;
+    return 100;
 }
 
 function cmpTimeToNow($passedDate, $passedTime) {
@@ -179,6 +179,48 @@ function doesEntryExist($database, $table, $field, $value) {
 function getMostRecentSession() {
     // TODO fill in with most recent session logic
     // Figure out if PHP returns tuples
+}
+
+// For admin weekly session selection
+function getSessionScrollHTML($scrollId) {
+  $db = new SQLite3("../../sql/pickfivefootball.db");
+  $year = getYear();
+  $result = $db->query("SELECT * FROM seasons WHERE year = " . $year);
+  if (!$result || getNumOfRows($result) == 0)
+    return "<h4>Error getting number of seasons</h4>";
+
+  $row = $result->fetchArray(SQLITE3_ASSOC);
+  $numberOfSessions = $row["sessions"];
+
+  // Get active sessions
+  $result = $db->query("SELECT sessionNum, title FROM sessions WHERE year = " . $year);
+  if (!$result)
+    return "<h4>Error getting any created sessions</h4>";
+
+  $sessions = $result->fetchArray(SQLITE3_ASSOC);
+  $numActive = getNumOfRows($sessions);
+
+  $scrollStr = "<select id='" . $scrollId . "' name='" . $scrollId . "'><option value='blank'";
+  if (!isset($_SESSION["info"]["session"]))
+    $scrollStr = $scrollStr . " selelected='selected'";
+  $scrollStr = $scrollStr . ">";
+
+  // Loop through sessions and pick out those names already defined
+  for ($i = 1; $i <= $numberOfSessions; $i++) {
+    $weekStr = "Week " . $i;
+    for ($j = 0; $j < $numActive; $j++) {
+      if ($sessions[$j]["sessionNum"] == $i)
+        $weekStr = $sessions[$j]["title"];
+
+      $scrollStr = $scrollStr . "<option value='session" . $i . "'";
+      if ($_SESSION["info"]["session"] == "session" . $i)
+        $scrollStr = $scrollStr . " selected='selected'";
+      $scrollStr = $scrollStr . ">" . $weekStr . "</option>";
+    }
+  }
+
+  $scrollStr = $scrollStr . "</select>";
+  return $scrollStr;
 }
 
 ?>

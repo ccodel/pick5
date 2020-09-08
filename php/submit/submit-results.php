@@ -51,17 +51,17 @@ $gamesToPlay = $_POST["games-to-play"];
 //Set the stored data in case not a valid form submission
 $_SESSION["info"]["session"] = $_POST["session"];
 $_SESSION["info"]["games-to-play"] = $_POST["games-to-play"];
-$gameCounter = 0;
 for ($i = 0; $i < $gamesToPlay; $i++) {
     if (isset($_POST["team-victor-" . $i])) {
-        $_SESSION["info"]["games"][$gameCounter]["away"] = $_POST["team-left-" . $i];
-        $_SESSION["info"]["games"][$gameCounter]["home"] = $_POST["team-right-" . $i];
-        $_SESSION["info"]["games"][$gameCounter]["spread"] = $_POST["game-spread-" . $i];
+        $_SESSION["info"]["games"][$i]["away"] = $_POST["team-left-" . $i];
+        $_SESSION["info"]["games"][$i]["home"] = $_POST["team-right-" . $i];
+        $_SESSION["info"]["games"][$i]["spread"] = $_POST["game-spread-" . $i];
         if ($_POST["team-victor-" . $i] === "home")
-            $_SESSION["info"]["games"][$gameCounter]["victor"] = 1;
+            $_SESSION["info"]["games"][$i]["victor"] = 1;
         else if ($_POST["team-victor-" . $i] === "away")
-            $_SESSION["info"]["games"][$gameCounter]["victor"] = 0;
-        $gameCounter++;
+            $_SESSION["info"]["games"][$i]["victor"] = 0;
+    } else {
+      $_SESSION["info"]["games"][$i]["victor"] = null;
     }
 }
 
@@ -79,16 +79,18 @@ else
     postErrorMessage("Connection with the database was not successful. Try again later.", $page);
 
 //For each game, update its data by team names and values entered
-for ($i = 0; $i < $gameCounter; $i++) {
-    $result = $db->query("UPDATE games SET "
-                         . "winner = " . $_SESSION["info"]["games"][$i]["victor"] . " WHERE "
-                         . "sessionNum = " . $sessionNum
-                         . " AND year = " . $year
-                         . " AND home = '" . $_SESSION["info"]["games"][$i]["home"] . "'"
-                         . " AND away = '" . $_SESSION["info"]["games"][$i]["away"] . "'");
+for ($i = 0; $i < $gamesToPlay; $i++) {
+    if (isset($_SESSION["info"]["games"][$i]["victor"])) {
+        $result = $db->query("UPDATE games SET "
+                              . "winner = " . $_SESSION["info"]["games"][$i]["victor"] . " WHERE "
+                              . "sessionNum = " . $sessionNum
+                              . " AND year = " . $year
+                              . " AND home = '" . $_SESSION["info"]["games"][$i]["home"] . "'"
+                              . " AND away = '" . $_SESSION["info"]["games"][$i]["away"] . "'");
 
-    if (!$result)
-        postErrorMessage("Insertion of game " . ($i + 1) . " was not successful.", $page);
+        if (!$result)
+            postErrorMessage("Insertion of game " . ($i + 1) . " was not successful.", $page);
+    }
 }
 
 //---------DEFAULT PICKS ASSIGNATION--------//
@@ -208,10 +210,10 @@ for ($i = 0; $i < $userNum; $i++) {
 
         for ($j = 0; $j < $gamesToPick; $j++) {
             $game = null;
-            for ($k = 0; $k < $gameCounter; $k++) {
+            for ($k = 0; $k < $gamesToPlay; $k++) {
                 if ($games[$k]["home"] === $userPicks[$i]["pick" . ($j + 1) . "home"]) {
                     $game = $games[$k];
-                    $k = $gameCounter;
+                    break;
                 }
             }
 

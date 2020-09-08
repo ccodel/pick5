@@ -72,7 +72,7 @@ checkAdmin();
             <div>
                 <h2>Creating sessions</h2>
                 <p>
-                    There are 23 sessions each regular NFL season. Prior to the games for each session, a virtual session must be created on the Pick 5 website. Creating a session is easy - go to the "create session" tab on the administration home. There, you may set the various fields for the session and mark the games and the spreads. Once submitted, the games will be open to pick by the users.
+                    There are several sessions each regular NFL season. Prior to the games for each session, a virtual session must be created on the Pick 5 website. Creating a session is easy - go to the "create session" tab on the administration home. There, you may set the various fields for the session and mark the games and the spreads. Once submitted, the games will be open to pick by the users.
                 </p>
             </div>
             

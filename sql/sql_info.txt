@@ -4,6 +4,11 @@ Table: loginInformation
     Email (email : string) NOT NULL PRIMARY KEY
     Password (hashed) (pwd : string)
     Account type (accountType : bit (0 is regular, 1 is admin)) NOT NULL
+
+--SEASON INFORMATION--
+Table: seasons
+    Year (year: integer) NOT NULL
+    Number of sessions (sessions: integer) NOT NULL
     
 --WEEKLY SESSION DATA--
 Table: sessions
