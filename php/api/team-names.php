@@ -38,7 +38,7 @@ function getTeam($label) {
     if ($teams[$label] != null)
         return $teams[$label];
 
-    return false;
+    return "Steelers";
 }
 
 function getAbbr($label) {
@@ -79,7 +79,7 @@ function getAbbr($label) {
     if ($teams[$label] != null)
         return $teams[$label];
 
-    return false;
+    return "Steelers";
 }
 
 function getLabel($team) {
@@ -120,7 +120,7 @@ function getLabel($team) {
     if ($labels[$team] != null)
         return $labels[$team];
     
-    return false;
+    return "Steelers";
 }
 
 ?>

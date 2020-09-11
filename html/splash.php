@@ -1,6 +1,6 @@
 <?php
 
-include("../php/api/check-login.php");
+include_once("../php/api/check-login.php");
 checkLogin();
 
 ?>
@@ -17,7 +17,7 @@ checkLogin();
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
 
-    <?php include("../php/api/mobile-api.php"); ?>
+    <?php include_once("../php/api/mobile-api.php"); ?>
 
     <body>
         <p hidden id="destination"><?php echo $_SESSION["info"]["destination"]; ?></p>

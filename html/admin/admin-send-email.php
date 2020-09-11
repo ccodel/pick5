@@ -1,6 +1,6 @@
 <?php
 
-include("../../php/api/check-login.php");
+include_once("../../php/api/check-login.php");
 checkLogin();
 checkAdmin();
 
@@ -18,7 +18,7 @@ checkAdmin();
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
 
-    <?php include("../../php/api/mobile-api.php"); ?>
+    <?php include_once("../../php/api/mobile-api.php"); ?>
 
     <body>
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -53,7 +53,7 @@ checkAdmin();
             </div>  
         </nav>
 
-        <?php include('../../php/api/header-message.php'); ?>
+        <?php include_once('../../php/api/header-message.php'); ?>
 
         <section>
             <h1>Send a mass email</h1>

@@ -1,6 +1,6 @@
 <?php
 
-include("../../php/api/check-login.php");
+include_once("../../php/api/check-login.php");
 checkLogin();
 checkAdmin();
 
@@ -17,7 +17,7 @@ checkAdmin();
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
 
-    <?php include("../../php/api/mobile-api.php"); ?>
+    <?php include_once("../../php/api/mobile-api.php"); ?>
 
     <body>
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -52,8 +52,8 @@ checkAdmin();
             </div>  
         </nav>
 
-        <?php include("../../php/api/header-message.php"); ?>
-        <?php include("../../php/api/team-names.php") ?>
+        <?php include_once("../../php/api/header-message.php"); ?>
+        <?php include_once("../../php/api/team-names.php") ?>
 
         <section>
             <h1>Add default loss and underdogs to a session</h1>
@@ -61,11 +61,11 @@ checkAdmin();
             <hr>
 
             <form id="session-load-form" action="../../php/get/get-session-default-data.php" method="post">
-		<h4>Select which session you'd like to add defaults to.</h4>
+		          <h4>Select which session you'd like to add defaults to.</h4>
 
-		<?php include("../../php/api/sql-api.php"); ?>
-		<?php echo getSessionScrollHTML("session-dropdown"); ?>
-                <input type="submit" name="session-submit" id="session-submit" value="Load data">
+		          <?php include_once("../../php/api/sql-api.php"); ?>
+		          <?php echo getSessionScrollHTML("session-dropdown"); ?>
+              <input type="submit" name="session-submit" id="session-submit" value="Load data">
             </form>
 
             <hr>

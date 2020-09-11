@@ -1,6 +1,6 @@
 <?php
 
-include("../../php/api/check-login.php");
+include_once("../../php/api/check-login.php");
 checkLogin();
 checkAdmin();
 
@@ -18,7 +18,7 @@ checkAdmin();
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     </head>
 
-    <?php include("../../php/api/mobile-api.php"); ?>
+    <?php include_once("../../php/api/mobile-api.php"); ?>
 
     <body>
         <nav class="navbar navbar-default navbar-fixed-top">
@@ -53,7 +53,7 @@ checkAdmin();
             </div>  
         </nav>
 
-        <?php include('../../php/api/header-message.php'); ?>
+        <?php include_once('../../php/api/header-message.php'); ?>
 
         <section>
             <h1>See if players have made their picks.</h1>
@@ -61,7 +61,7 @@ checkAdmin();
             <form id="get-pick-status" action="../../php/get/get-admin-pick-status.php" method="post">
 		<h4>Select which session you'd like to view.</h4>
 
-		<?php include("../../php/api/sql-api.php"); ?>
+		<?php include_once("../../php/api/sql-api.php"); ?>
 		<?php echo getSessionScrollHTML("session-dropdown"); ?>
                 <input type="submit" name="session-submit" id="session-submit" value="Load data">
             </form>
