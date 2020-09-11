@@ -195,7 +195,7 @@ function getSessionScrollHTML($scrollId) {
   $activeSessions = null;
 
   // Get active sessions
-  $result = $db->query("SELECT sessionNum, title FROM sessions WHERE year = " . $year);
+  $result = $db->query("SELECT * FROM sessions WHERE year = " . $year);
   if (!$result) {
     $hasSessions = false;
     $numActive = 0;
