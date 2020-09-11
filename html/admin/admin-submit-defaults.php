@@ -53,7 +53,8 @@ checkAdmin();
         </nav>
 
         <?php include_once("../../php/api/header-message.php"); ?>
-        <?php include_once("../../php/api/team-names.php") ?>
+        <!-- For whatever reason, PHP does not make include_once idempotent, so comment out doubly-included -->
+        <!-- include_once("../../php/api/team-names.php"); -->
 
         <section>
             <h1>Add default loss and underdogs to a session</h1>
